@@ -22,7 +22,7 @@ Sistem ini memiliki dua antarmuka utama:
 
 - **Framework:** Laravel 
 - **Database:** MySQL
-- **Template UI Admin:** [Stisla](https://getstisla.com/) (Bootstrap 4)
+- **Template UI Admin:** [Stisla](https://themewagon.com/themes/free-bootstrap-4-html-5-admin-dashboard-template-stisla/) (Bootstrap 4)
 - **Library PDF:** `barryvdh/laravel-dompdf`
 
 ---
