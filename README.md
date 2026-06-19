@@ -1,58 +1,71 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎓 SPK Rekomendasi Konsentrasi Studi (Metode SAW)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem Pendukung Keputusan (SPK) berbasis web untuk merekomendasikan konsentrasi program studi mahasiswa. Dibangun menggunakan framework **Laravel** dan mengimplementasikan algoritma **Simple Additive Weighting (SAW)**.
 
-## About Laravel
+Sistem ini memiliki dua antarmuka utama:
+1. **Portal Mahasiswa:** Halaman publik yang *clean* untuk mahasiswa mengecek hasil rekomendasi dan mengunduh rapor PDF hanya dengan menggunakan NIM (Tanpa perlu login).
+2. **Dashboard Admin:** Panel kontrol khusus Staf/Admin Prodi untuk mengelola master data dan menginput transkrip nilai akademik.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Otomatisasi Hitung IPK:** Sistem otomatis menghitung IPK asli mahasiswa berdasarkan nilai mutlak (A, B, C) dan bobot SKS mata kuliah.
+- **Algoritma SAW:** Implementasi *ranking* keputusan menggunakan metode *Simple Additive Weighting* (Normalisasi Matriks & Pembobotan Kriteria).
+- **Multi-Interface:** Pemisahan *layout* antara portal publik mahasiswa dan *dashboard* admin.
+- **Export Rapor PDF:** Cetak hasil analisis keputusan dan detail transkrip nilai langsung ke format PDF.
+- **Reset Transkrip:** Fitur *quick-reset* untuk menghapus transkrip nilai jika terjadi kesalahan input oleh admin.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Teknologi yang Digunakan
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Framework:** Laravel 
+- **Database:** MySQL
+- **Template UI Admin:** [Stisla](https://getstisla.com/) (Bootstrap 4)
+- **Library PDF:** `barryvdh/laravel-dompdf`
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🚀 Cara Instalasi (Local Development)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi di *localhost*:
 
-```bash
-composer require laravel/boost --dev
+1. **Clone Repository / Extract Folder**
+   Pastikan folder project sudah berada di dalam direktori server lokal (misal: `htdocs` untuk XAMPP).
 
-php artisan boost:install
-```
+2. **Install Dependencies**
+   Buka terminal di dalam folder project dan jalankan:
+   ```bash
+   composer install
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+3. **Konfigurasi Environment**
 
-## Contributing
+    Copy file `.env.example` menjadi `.env.`
+    Buka file `.env` dan sesuaikan nama database:
+    ```bash
+    DB_DATABASE=nama_database_kamu
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Generate Application Key**
+   ```bash
+    php artisan key:generate
 
-## Code of Conduct
+5.  **Migrasi & Seeding Database**
+    Jalankan perintah ini untuk membuat tabel dan akun admin default:
+    ```bash
+    php artisan migrate:fresh --seed
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. **Jalankan Aplikasi**
+   ```bash
+   php artisan serve
 
-## Security Vulnerabilities
+   Aplikasi dapat diakses melalui browser di: `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+🔐 Akses Login Default
+Gunakan kredensial berikut untuk masuk ke Dashboard Admin (Bisa diakses melalui tombol Login di portal mahasiswa atau via URL /login):
 
-## License
+    ```bash
+    Email: admin@kampus.ac.id
+    Password: password123
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Dibuat untuk memenuhi project Sistem Pendukung Keputusan.
